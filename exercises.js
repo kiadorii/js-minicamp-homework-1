@@ -1,168 +1,131 @@
-//Do not change any of the function names
+// Do not change any of the function names
 
-function multiplyByTen(num) {
-  // return num after multiplying it by ten
-  // code here
+function multiplyArguments() {
+  // use the arguments keyword to multiply all of the arguments together and return the product
+  // if no arguments are passed in return 0
+  // if one argument is passed in just return it
+  var args = Array.prototype.slice.call(arguments);if (arguments.length === 0) {
+    return 0;
+  }
+  if(arguments.length === 1) {
+    return args[0];
+  }
+  
+  var product = 1;
+  args.forEach(function(num) {
+    product *= num;
+  });
+  return product;
 }
 
-function subtractFive(num) {
-  // return num after subtracting five
-  // code here
+function invokeCallback(cb) {
+  // invoke cb
+  cb();
 }
 
-function areSameLength(str1, str2) {
-  // return true if the two strings have the same length
-  // otherwise return false
-  // code here
+function sumArray(numbers, cb) {
+  // sum up all of the integers in the numbers array
+  // pass the result to cb
+  // no return is necessary
+  var sum = 0;
+  numbers.forEach(function(num) {
+    sum += num;
+  });
+  cb(sum);
 }
 
-function areEqual(x, y) {
-  // return true if x and y are the same
-  // otherwise return false
-  // code here
+function forEach(arr, cb) {
+  // iterate over arr and pass its values to cb one by one
+  // hint: you will be invoking cb multiple times (once for each value in the array)
+  arr.forEach(function(num) {
+    cb(num);
+  });
 }
 
-function lessThanNinety(num) {
-  // return true if num is less than ninety
-  // otherwise return false
-  // code here
+function map(arr, cb) {
+  // create a new array
+  // iterate over each value in arr, pass it to cb, then place the value returned from cb into the new arr
+  // the new array should be the same length as the array argument
+  var newArr = arr.map(function(num) {
+    return cb(num);
+  });
+
+  return newArr;
 }
 
-function greaterThanFifty(num) {
-  // return true if num is greater than fifty
-  // otherwise return false
-  // code here
+function getUserConstructor() {
+  // create a constructor called User
+  // it should accept an options object with username, name, email, and password properties
+  // in the constructor set the username, name, email, and password properties
+  // the constructor should have a method 'sayHi' on its prototype that returns the string 'Hello, my name is {{name}}'
+  // {{name}} should be the name set on each instance
+  // return the constructor
+  return function User(options) {
+    this.username = options.username;
+    this.name = options.name;
+    this.email = options.email;
+    this.password = options.password;
+    this.sayHi = function() {
+      return 'Hello, my name is ' + this.name;
+    };};
 }
 
-function add(x, y) {
-  // add x and y together and return the value
-  // code here
+function addPrototypeMethod(Constructor) {
+  // add a method to the constructor's prototype
+  // the method should be called 'sayHi' and should return the string 'Hello World!'
+  Constructor.prototype.sayHi = function() {
+    return 'Hello World!';
+  };
 }
 
-function subtract(x, y) {
-  // subtract y from x and return the value
-  // code here
+function addReverseString() {
+  // add a method to the string constructor's prototype that returns a reversed copy of the string
+  // name this method reverse
+  // hint:
+  // you will need to use 'this' inside of reverse
+  String.prototype.reverse = function() {
+    return this.split('').reverse().join('');
+  };
 }
 
-function divide(x, y) {
-  // divide x by y and return the value
-  // code here
+function nFactorial(n) {
+  // return the factorial for n
+  // solve this recursively
+  // example:
+  // the factorial of 3 is 6 (3 * 2 * 1)
+  if(n === 0) {
+    return 1;
+  }
+  return n * nFactorial(n-1);
 }
 
-function multiply(x, y) {
-  // multiply x by y and return the value
-  // code here
+function cacheFunction(cb) {
+  // Extra Credit
+  // use closure to create a cache for the cb function
+  // the function that you return should accept a single argument and invoke cb with that argument
+  // when the function you return is invoked with an argument it should save that argument and its result
+  // when the function you return is called again with an argument that it has seen before it should not call cb
+  // but should instead directly returned the previous result
+  // example:
+  // cb -> function(x) { return x * x; }
+  // if the function you return is invoked with 5 it would pass 5 to cb(5) and return 25
+  // if the function you return is invoked again with 5 it will look on an object in the closure scope
+  // and return 25 directly and will not invoke cb again
 }
 
-function getRemainder(x, y) {
-  // return the remainder from dividing x by y
-  // code here
-}
-
-function isEven(num) {
-  // return true if num is even
-  // otherwise return false
-  // code here
-}
-
-function isOdd(num) {
-  // return true if num is false
-  // otherwise return false
-  // code here
-}
-
-function square(num) {
-  // square num and return the new value
-  // code here
-}
-
-function cube(num) {
-  // cube num and return the new value
-  // code here
-}
-
-function raiseToPower(num, exponent) {
-  // raise num to whatever power is passed in as exponent
-  // code here
-}
-
-function roundNumber(num) {
-  // round num and return it
-  // code here
-}
-
-function roundUp(num) {
-  // round num up and return it
-  // code here
-}
-
-function addExclamationPoint(str) {
-  // add an exclamation point to the end of str and return the new string
-  // 'hello world' -> 'hello world!'
-  // code here
-}
-
-function combineNames(firstName, lastName) {
-  // return firstName and lastName combined as one string and separated by a space.
-  // 'Lambda', 'School' -> 'Lambda School'
-  // code here
-}
-
-function getGreeting(name) {
-  // Take the name string and concatenate other strings onto it so it takes the following form:
-  // 'Sam' -> 'Hello Sam!'
-  // code here
-}
-
-// If you can't remember these area formulas then head over to Google or look at the test code.
- 
-function getRectangleArea(length, width) {
-  // return the area of the rectangle by using length and width
-  // code here
-}
-
-function getTriangleArea(base, height) {
-  // return the area of the triangle by using base and height
-  // code here
-}
-
-function getCircleArea(radius) {
-  // return the rounded area of the circle given the radius
-  // code here
-}
-
-function getRectangularPrismVolume(length, width, height) {
-  // return the volume of the 3D rectangular prism given the length, width, and height
-  // code here
-}
 
 // Do not modify code below this line.
 // --------------------------------
 
 module.exports = {
-  multiplyByTen: multiplyByTen,
-  subtractFive: subtractFive,
-  areSameLength: areSameLength,
-  areEqual: areEqual,
-  lessThanNinety: lessThanNinety,
-  greaterThanFifty: greaterThanFifty,
-  add: add,
-  subtract: subtract,
-  divide: divide,
-  multiply: multiply,
-  getRemainder: getRemainder,
-  isEven: isEven,
-  isOdd: isOdd,
-  square: square,
-  cube: cube,
-  raiseToPower: raiseToPower,
-  roundNumber: roundNumber,
-  roundUp: roundUp,
-  addExclamationPoint: addExclamationPoint,
-  combineNames: combineNames,
-  getGreeting: getGreeting,
-  getRectangleArea: getRectangleArea,
-  getTriangleArea: getTriangleArea,
-  getCircleArea: getCircleArea,
-  getRectangularPrismVolume: getRectangularPrismVolume
+  multiplyArguments: multiplyArguments,
+  invokeCallback: invokeCallback,
+  sumArray: sumArray,
+  forEach: forEach,
+  map: map,
+  getUserConstructor: getUserConstructor,
+  addPrototypeMethod: addPrototypeMethod,
+  addReverseString: addReverseString,
+  nFactorial: nFactorial,
+  cacheFunction: cacheFunction
 };
